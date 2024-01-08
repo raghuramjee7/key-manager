@@ -13,19 +13,19 @@ The keys can be accessed through the API.
 3. Each keyset can be shared to other users
 4. Keyset access can be revoked
 5. Each keyset can be edited
-6. A key generator that generates 16 character alphanumberic for user use
-7. Users can access all their keys through an API
+6. We can set a TTL for each keyset. After the TTL expires, the keyset is revoked
+7. A key generator that generates 16 character alphanumberic for user use
 8. A CRON job that runs every 24 hours to check for expired keys and revokes them
 
 ![Alt text](static/image.png)
 
 ## Data Schema
-1. Keys table - stores the keyset information: name, public key, private key, user id, keyset id
+1. Keys table - stores the keyset information: name, public key, private key, user id, keyset id, ttl
 2. Users table - stores the user information: username, password, user id, email
-3. Share table - stores the keyset information: keyset id, user id, shared user id, time limit
+3. Share table - stores the keyset information: keyset id, user id, shared user id, ttl
 
 ## Encryption
-1. User keys are encrypted and decrypted through user password
+1. User keys are encrypted and decrypted through user password hash
 
 ## API Endpoints
 1. /api/v1/keys - GET, POST, PUT, DELETE: gets all the keys for the user, creates a new keyset, updates a keyset, deletes a keyset - only accessed with key ID
@@ -34,3 +34,5 @@ The keys can be accessed through the API.
 
 ## CI/CD
 1. GitHub Workflow
+2. Docker
+3. Travis CI
